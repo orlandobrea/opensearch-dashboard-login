@@ -13,9 +13,15 @@ Opensearch doesn't allow to include the dashboard inside an IFrame using the sam
 Use a reverse proxy to modify headers and convert /oauth2/token response to cookies.
 
 ```mermaid
-graph LR
-    A[Square Rect] -- Link text --> B((Circle))
-    A --> C(Round Rect)
-    B --> D{Rhombus}
-    C --> D
+sequenceDiagram
+    Browser->>Cognito: /login?response_type=code&...
+    Cognito-->>Browser: ?code=xxx
+    Browser->>Reverse: /oauth2/login?code=xxx
+    Reverse->>Cognito: /oauth2/login?code=xxx
+    Cognito-->>Reverse: body {access_token, id_token}
+    Reverse-->>Browser: set-cookie:ACCESS-TOKEN
+    Browser->>Reverse: /_dashboards
+    Reverse->>Opensearch: /_dashboards
+    Opensearch-->>Reverse: page
+    Reverse-->>Browser: page
 ```

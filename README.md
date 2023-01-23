@@ -30,8 +30,8 @@ sequenceDiagram
     Reverse->>Cognito: /login?response_type=code&...
     Cognito-->>Reverse: ?code=xxx
     Reverse-->>Browser: ?code=xxx
-    Browser->>Reverse: /oauth2/login?code=xxx
-    Reverse->>Cognito: /oauth2/login?code=xxx
+    Browser->>Reverse: /oauth2/token?code=xxx
+    Reverse->>Cognito: /oauth2/token?code=xxx
     Cognito-->>Reverse: body {access_token, id_token}
     Reverse-->>Browser: set-cookie:ACCESS-TOKEN
     Browser->>Reverse: iframe src=reverse/_dashboards

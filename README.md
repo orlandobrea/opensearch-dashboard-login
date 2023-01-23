@@ -18,8 +18,10 @@ sequenceDiagram
     participant Reverse 
     participant Cognito 
     participant Opensearch 
-    Browser->>Cognito: /login?response_type=code&...
-    Cognito-->>Browser: ?code=xxx
+    Browser->>Reverse: /login?response_type=code&...
+    Reverse->>Cognito: /login?response_type=code&...
+    Cognito-->>Reverse: ?code=xxx
+    Reverse-->>Browser: ?code=xxx
     Browser->>Reverse: /oauth2/login?code=xxx
     Reverse->>Cognito: /oauth2/login?code=xxx
     Cognito-->>Reverse: body {access_token, id_token}

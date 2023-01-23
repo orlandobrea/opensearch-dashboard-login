@@ -14,6 +14,10 @@ Use a reverse proxy to modify headers and convert /oauth2/token response to cook
 
 ```mermaid
 sequenceDiagram
+    participant Browser 
+    participant Reverse 
+    participant Cognito 
+    participant Opensearch 
     Browser->>Cognito: /login?response_type=code&...
     Cognito-->>Browser: ?code=xxx
     Browser->>Reverse: /oauth2/login?code=xxx

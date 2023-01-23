@@ -18,7 +18,7 @@ sequenceDiagram
     Cognito-->>Browser: ?code=xxx
     Browser->>Reverse: /oauth2/login?code=xxx
     Reverse->>Cognito: /oauth2/login?code=xxx
-    Reverse-->>Browser: body {access_token, id_token}
+    Cognito-->>Reverse: body {access_token, id_token}
     Reverse-->>Browser: set-cookie:ACCESS-TOKEN
     Browser->>Reverse: iframe src=reverse/_dashboards
     Reverse->>Opensearch: /_dashboards

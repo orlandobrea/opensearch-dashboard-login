@@ -6,7 +6,7 @@ This is a small project that allows to include AWS Opensearch dashboard (Kibana)
 
 ### How to run 
 
-* Edit nginx.conf to match your opensearch and cognito endpoints 
+* Edit nginx.conf to match your opensearch (dashboard_host) and cognito (cognito_host) endpoints 
 * Edit auth.js to match your cognito endpoint and authorization header (Authorization header is base64 applied to "cliend_id:client_secret")
 * Start reverse `cd reverse` `docker-compose up`
 * Start react `cd front` `npm start`
@@ -39,3 +39,9 @@ sequenceDiagram
     Opensearch-->>Reverse: page
     Reverse-->>Browser: page
 ```
+
+### NGINX configuration
+
+* Requests to `/login` are proxied to cognito (`/login`)
+* Requests to `/_dashboards` are proxied to opensearch (`/_dashboards`)
+* Requests to `/oauth2/token` are processed by JS inside NGINX (file `auth.js`)

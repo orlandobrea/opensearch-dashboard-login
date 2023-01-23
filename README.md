@@ -4,6 +4,14 @@
 
 This is a small project that allows to include AWS Opensearch dashboard (Kibana) inside an IFrame (using React). The use of React is just to make it easier to manage routes (this can be done with Angular, Vue or vanilla JS).
 
+### How to run 
+
+* Edit nginx.conf to match your opensearch and cognito endpoints 
+* Edit auth.js to match your cognito endpoint and authorization header (Authorization header is base64 applied to "cliend_id:client_secret")
+* Start reverse `cd reverse` `docker-compose up`
+* Start react `cd front` `npm start`
+* Open a browser at `http://localhost:3000`
+
 ## Issue 
 
 Opensearch doesn't allow to include the dashboard inside an IFrame using the same authentication. 

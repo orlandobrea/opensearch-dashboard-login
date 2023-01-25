@@ -1,4 +1,4 @@
-# Opensearch in iframe 
+# Opensearch dashboard inside an iframe 
 
 ## Project 
 
